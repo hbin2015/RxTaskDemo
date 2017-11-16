@@ -15,7 +15,7 @@ import com.hb.library.rxtask.comm.Task;
 import java.lang.ref.WeakReference;
 
 /**
- * 构造器
+ * 异步构造器
  * Created by HuangBin on 2017/11/12.
  */
 public class AsyncBuilder<Params, Progress, Result> implements RxBuilder {
