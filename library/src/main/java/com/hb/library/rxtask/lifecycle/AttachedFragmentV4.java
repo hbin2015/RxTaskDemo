@@ -3,6 +3,7 @@ package com.hb.library.rxtask.lifecycle;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,35 +36,41 @@ public class AttachedFragmentV4 extends Fragment
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //Log.d(TAG, "onCreate");
         LifeCycle.onCreate.perfrom(observers, savedInstanceState);
     }
 
     @Override
     public void onStart() {
         super.onStart();
+        //Log.d(TAG, "onStart");
         LifeCycle.onStart.perfrom(observers);
     }
 
     @Override
     public void onResume() {
         super.onResume();
+        //Log.d(TAG, "onResume");
         LifeCycle.onResume.perfrom(observers);
     }
 
     @Override
     public void onPause() {
+        //Log.d(TAG, "onPause");
         LifeCycle.onPause.perfrom(observers);
         super.onPause();
     }
 
     @Override
     public void onStop() {
+        //Log.d(TAG, "onStop");
         LifeCycle.onStop.perfrom(observers);
         super.onStop();
     }
 
     @Override
     public void onDestroy() {
+        //Log.d(TAG, "onDestroy");
         LifeCycle.onDestroy.perfrom(observers);
         if(attFramgentMap != null){
             attFramgentMap.remove(key);

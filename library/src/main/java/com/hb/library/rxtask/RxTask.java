@@ -54,7 +54,7 @@ public class RxTask {
         static final Map<Integer, AttFramgent> attFramgentMap;
 
         static {
-            CACHED_EXECUTOR = new ThreadPoolExecutor(0, Integer.MAX_VALUE,
+            CACHED_EXECUTOR = new ThreadPoolExecutor(0, 100,
                     15L, TimeUnit.SECONDS,
                     new SynchronousQueue<Runnable>());
             mainHandler = obtainHandler();

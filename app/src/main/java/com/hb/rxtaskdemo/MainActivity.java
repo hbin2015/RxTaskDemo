@@ -19,7 +19,8 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class MainActivity extends AppCompatActivity
         implements View.OnClickListener {
 
-    private Button startBtn;
+    private Button startBtn1, startBtn2, startBtn3;
+    private ProgressBar bar16, bar17;
     private TextView txtInfo;
     private TaskTest[] taskTests;
     private final int[] ids = new int[]{ R.id.bar1, R.id.bar2, R.id.bar3, R.id.bar4, R.id.bar5,
@@ -51,19 +52,96 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onClick(View view) {
         switch (view.getId()){
-            case R.id.startBtn:
-                if(startBtn.isEnabled()){
-                    startBtn.setEnabled(false);
+            case R.id.startBtn1:
+                if(startBtn1.isEnabled()){
+                    startBtn1.setEnabled(false);
                     txtInfo.setText("");
                     startTask();
+                }
+                break;
+            case R.id.startBtn2:
+                if(startBtn2.isEnabled()){
+                    startBtn2.setEnabled(false);
+                    RxTask.create()
+                            .scheduler(RxTask.THREAD_WORK)
+                            .post(new Runnable() {
+
+                        @Override
+                        public void run() {
+                            try {
+                                int n = 0;
+                                while (n <= 100) {
+                                    n++;
+                                    bar16.setProgress(n);
+                                    Thread.sleep(300);
+                                }
+                                RxTask.create()
+                                        .scheduler(RxTask.THREAD_UI)
+                                        .post(new Runnable() {
+
+                                            @Override
+                                            public void run() {
+                                                txtInfo.append("Task #15执行成功!\n\n");
+                                                startBtn2.setEnabled(true);
+                                            }
+
+                                        });
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+                        }
+
+                    });
+                }
+                break;
+            case R.id.startBtn3:
+                if(startBtn3.isEnabled()){
+                    startBtn3.setEnabled(false);
+                    RxTask.create()
+                            .workThread()
+                            .bindLifeCycle(this)
+                            .execute(new Runnable() {
+
+                                @Override
+                                public void run() {
+                                    try {
+                                        int n = 0;
+                                        while (n <= 100) {
+                                            n++;
+                                            bar17.setProgress(n);
+                                            Thread.sleep(300);
+                                        }
+                                        RxTask.create()
+                                                .scheduler(RxTask.THREAD_UI)
+                                                .post(new Runnable() {
+
+                                                    @Override
+                                                    public void run() {
+                                                        txtInfo.append("Task #16执行成功!\n\n");
+                                                        startBtn3.setEnabled(true);
+                                                    }
+
+                                                });
+                                    } catch (Exception e) {
+                                        e.printStackTrace();
+                                    }
+                                }
+
+                            });
                 }
                 break;
         }
     }
 
     private void initView() {
-        startBtn = findViewById(R.id.startBtn);
-        startBtn.setOnClickListener(this);
+        startBtn1 = findViewById(R.id.startBtn1);
+        startBtn2 = findViewById(R.id.startBtn2);
+        startBtn3 = findViewById(R.id.startBtn3);
+        startBtn1.setOnClickListener(this);
+        startBtn2.setOnClickListener(this);
+        startBtn3.setOnClickListener(this);
+        bar16 = findViewById(R.id.bar16);
+        bar17 = findViewById(R.id.bar17);
         txtInfo = findViewById(R.id.txtInfo);
         taskTests = new TaskTest[ids.length];
         ProgressBar progressBar = null;
@@ -95,7 +173,7 @@ public class MainActivity extends AppCompatActivity
         void start() {
             task = RxTask
                     .<Void, Integer, Boolean>async()
-                    .bindLifeCycle(this)
+                    .bindLifeCycle(MainActivity.this)
                     .doInBackground(new RxDoInBackground<Void, Integer, Boolean>() {
 
                         @Override
@@ -130,8 +208,8 @@ public class MainActivity extends AppCompatActivity
                         @Override
                         public void onPostExecute(Boolean reuslt) {
                             int count = atomicInteger.incrementAndGet();
-                            if(count >= 10){
-                                startBtn.setEnabled(true);
+                            if(count >= ids.length){
+                                startBtn1.setEnabled(true);
                                 atomicInteger.set(0);
                             }
                             txtInfo.append(reuslt ?

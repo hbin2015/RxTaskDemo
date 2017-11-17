@@ -36,7 +36,7 @@ public class AsyncBuilder<Params, Progress, Result> implements RxBuilder {
                 || context instanceof android.support.v4.app.Fragment) {
             rxContext = new WeakReference<>(context);
         } else {
-            throw new RuntimeException("bindLifeCycle of context must is Activity or Fragment!");
+            throw new RuntimeException("bindLifeCycle param: context must is Activity or Fragment!");
         }
         return this;
     }

@@ -17,7 +17,7 @@
             android:orientation="vertical">
 
             <Button
-                android:id="@+id/startBtn"
+                android:id="@+id/startBtn1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
@@ -414,12 +414,82 @@
 
             </LinearLayout>
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:layout_marginRight="10dp"
+                    android:gravity="center"
+                    android:textSize="18sp"
+                    android:text="Task #15"/>
+
+                <ProgressBar
+                    android:id="@+id/bar16"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="4"
+                    style="@android:style/Widget.ProgressBar.Horizontal"/>
+
+                <Button
+                    android:id="@+id/startBtn2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textSize="12sp"
+                    android:text="开始"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:layout_marginRight="10dp"
+                    android:gravity="center"
+                    android:textSize="18sp"
+                    android:text="Task #16"/>
+
+                <ProgressBar
+                    android:id="@+id/bar17"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="4"
+                    style="@android:style/Widget.ProgressBar.Horizontal"/>
+
+                <Button
+                    android:id="@+id/startBtn3"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textSize="12sp"
+                    android:text="开始"/>
+
+            </LinearLayout>
+
             <TextView
                 android:id="@+id/txtInfo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="10dp"
-                android:textSize="16sp"/>
+                android:textSize="16sp" />
 
         </LinearLayout>
 
