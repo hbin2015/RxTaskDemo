@@ -1,5 +1,9 @@
 # RxTaskDemo
 异步任务(AsyncTask)改良版
+### 导入
+```text
+compile 'com.hbin:rxtask:1.0.0'
+```
 ### 当前线程
 任务执行在当前线程上
 ```Java
@@ -91,7 +95,7 @@ Task task = RxTask.<Void, Integer, Boolean>async()
   .......
   //取消任务
   task.cancelTask();                
-```                
+```      
 ## License 
 ```text
 Copyright 2016 hbin2015
